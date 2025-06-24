@@ -50,3 +50,11 @@ export const getFormFields= (data) =>{
       },
     ];
   }
+
+  export const getDataFromLocalStorage = (key) =>{
+    return JSON.parse(localStorage.getItem(key))
+  } 
+
+  export const setDataInLocalStorage = (key, payload) =>{
+    localStorage.setItem(key, JSON.stringify(payload));
+  } 

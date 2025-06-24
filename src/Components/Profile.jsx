@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { appContext } from "../Context/Context";
 import { ContaineWrapper } from "./GenericComponent";
+import { getDataFromLocalStorage } from "./FormComponents/Utils";
 
 const Profile = () => {
   const { personalDetails, setPersonalDetails } = useContext(appContext);
-  const userPersonalInfo = JSON.parse(localStorage.getItem("personalDetails"));
+  const userPersonalInfo = getDataFromLocalStorage("personalDetails");
 
   return (
     <ContaineWrapper>

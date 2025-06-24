@@ -3,7 +3,7 @@ import FormComponent from "./Form";
 import { fields } from "./constants";
 import ButtonComponent from "./ButtonComponent";
 import { appContext } from "../../Context/Context";
-import { getFormFields } from "./Utils";
+import { getDataFromLocalStorage, getFormFields, setDataInLocalStorage } from "./Utils";
 
 const PersonsalDetailForm = () => {
   const { personalDetails, setPersonalDetails, resetAll } =
@@ -13,13 +13,11 @@ const PersonsalDetailForm = () => {
     setPersonalDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const storedPersonalData = JSON.parse(
-    localStorage.getItem("personalDetails")
-  );
+  // const storedPersonalData = getDataFromLocalStorage("personalDetails")
   useEffect(() => {
-    const stored = localStorage.getItem("personalDetails");
+    const stored = getDataFromLocalStorage("personalDetails");
     if (stored) {
-      setPersonalDetails(JSON.parse(stored));
+      setPersonalDetails(stored);
     }
   }, [setPersonalDetails]);
 
@@ -27,7 +25,7 @@ const PersonsalDetailForm = () => {
 
   const handleSaveButtonClick = () => {
     debugger;
-    localStorage.setItem("personalDetails", JSON.stringify(personalDetails));
+    setDataInLocalStorage("personalDetails", personalDetails);
     alert("Data saved");
   };
   const handleCancelButtonClick = () => {
